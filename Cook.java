@@ -4,6 +4,7 @@ import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.Strategy;
 import org.rev317.min.api.methods.Inventory;
 import org.rev317.min.api.methods.Menu;
+import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
@@ -46,6 +47,9 @@ public class Cook implements Strategy {
 				//Cook All
 				Menu.sendAction(315,stove.getHash(), stove.getLocalRegionX(), 13717,2728,1);
 				Time.sleep(2000);
+				while (Players.getMyPlayer().getAnimation() != -1 && Log.isLoggedIn()) {
+					Time.sleep(200);
+				}
 			}
 		}
 	}

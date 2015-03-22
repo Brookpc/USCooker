@@ -34,7 +34,7 @@ category = Category.COOKING,
 description = "Ultimate Scape 2 - AIO Cooker",
 name = "USCook by Ark",
 servers = { "Ultimate Scape" },
-version = 2.5)
+version = 1.5)
 
 public class USCooker extends Script implements Paintable {
 
@@ -141,63 +141,59 @@ public class USCooker extends Script implements Paintable {
 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Gui() {
-			initComponents();
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 150, 180);
+			setTitle("USCooker by Ark");
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			setBounds(100, 100, 233, 160);
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 
-			//Title Label
-			lblUSCook = new JLabel("USCooker");
-			lblUSCook.setFont(new Font("Arial", Font.PLAIN, 20));
-			lblUSCook.setBounds(15, 11, 101, 16);
-			contentPane.add(lblUSCook);
-
-			//Ready Label
-			lblReady = new JLabel("by Ark");
-			lblReady.setBounds(17, 49, 82, 14);
-			contentPane.add(lblReady);
-
-			//Combo Box
-			JComboBox fishList = new JComboBox();
-			fishList.setModel(new DefaultComboBoxModel(foodStrings));
-			fishList.setSelectedIndex(0);
-			fishList.setBounds(10, 75, 95, 23);
-			contentPane.add(fishList);
+			JComboBox comboBox = new JComboBox();
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Shrimp", "Trout", "Tuna", "Lobster", "Shark", "Rocktail"}));
+			comboBox.setBounds(55, 50, 95, 20);
+			contentPane.add(comboBox);
+			
+			JLabel lblUscooker = new JLabel("USCooker");
+			lblUscooker.setFont(new Font("Agency FB", Font.PLAIN, 24));
+			lblUscooker.setBounds(67, 0, 105, 39);
+			contentPane.add(lblUscooker);
+			
+			JLabel lblByArk = new JLabel("By Ark");
+			lblByArk.setBounds(77, 35, 46, 14);
+			contentPane.add(lblByArk);
 
 			//Start Button
-			btnStart = new JButton("Start");
+			JButton btnStart = new JButton("Start Script");
 			btnStart.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					if(fishList.getSelectedIndex() == 0) {
+					if(comboBox.getSelectedIndex() == 0) {
 						//shrimp
 						rawID = 318;
 						cookID = 316;
 						burnID = 324;
-					} else if (fishList.getSelectedIndex() == 1) {
+					} else if (comboBox.getSelectedIndex() == 1) {
 						//trout
 						rawID = 336;
 						cookID = 334;
 						burnID = 344;
-					} else if (fishList.getSelectedIndex() == 2) {
+					} else if (comboBox.getSelectedIndex() == 2) {
 						//lobster
 						rawID = 378;
 						cookID = 380;
 						burnID = 382;
-					} else if (fishList.getSelectedIndex() == 3) {
+					} else if (comboBox.getSelectedIndex() == 3) {
 						//tuna
 						rawID = 360;
 						cookID = 362;
 						burnID = 368;
-					} else if (fishList.getSelectedIndex() == 4) {
+					} else if (comboBox.getSelectedIndex() == 4) {
 						//shark
 						rawID = 384;
 						cookID = 386;
 						burnID = 388;
-					} else if (fishList.getSelectedIndex()== 5) {
+					} else if (comboBox.getSelectedIndex()== 5) {
 						//rocktail
 						rawID = 15271;
 						cookID = 15273;
@@ -210,21 +206,9 @@ public class USCooker extends Script implements Paintable {
 				}
 
 			});
-			btnStart.setBounds(10, 112, 95, 23);
+			btnStart.setBounds(55, 81, 95, 23);
 			contentPane.add(btnStart);
 
 		}
-
-		private void initComponents() {
-			lblUSCook = new JLabel();
-			lblReady = new JLabel();
-		}
-
-		public String[] foodStrings = { "Shrimp", "Trout", "Lobster", "Tuna", "Shark", "RockTail" };
-		private JLabel lblUSCook;
-		private JButton btnStart;
-		@SuppressWarnings({ "rawtypes", "unused"})
-		private JComboBox fishList;
-		private JLabel lblReady;
 	}
 }
